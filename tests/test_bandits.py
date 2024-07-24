@@ -38,5 +38,19 @@ def test_offline_policy_evaluation():
     average_reward = bandit.offline_policy_evaluation(historical_data)
     assert 0 <= average_reward <= 1
 
+def test_run():
+    bandit = ContextualBandit(num_arms=5, num_features=10)
+
+    def get_current_context() -> List[float]:
+        return [random.random() for _ in range(10)]
+
+    def get_reward(chosen_arm: int) -> float:
+        return random.random()
+
+    initial_weights = [list(arm_weights) for arm_weights in bandit.weights]
+    bandit.run(T=10, get_current_context=get_current_context, get_reward=get_reward)
+    updated_weights = bandit.weights
+    assert initial_weights != updated_weights
+
 if __name__ == "__main__":
     pytest.main()
