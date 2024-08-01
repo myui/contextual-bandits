@@ -2,6 +2,7 @@ import pytest
 import random
 
 from knn_bandits.bandits import ContextualBandit
+from typing import List
 
 # Test cases
 def test_initialize_weights():

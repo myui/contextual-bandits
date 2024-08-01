@@ -78,6 +78,16 @@ class ContextualBandit:
             self.weights[chosen_arm][i] += self.learning_rate * (reward - dotp) * context[i]
         self.post_update_weights(chosen_arm)
 
+
+    def post_update_weights(self, chosen_arm: int):
+        """
+        Post update weights for the chosen arm.
+
+        Args:
+            chosen_arm (int): The index of the chosen arm.
+        """
+        pass
+
     def run(self, T: int, get_current_context: Callable[[], List[float]], get_reward: Callable[[int], float]):
         """
         Runs the contextual bandit algorithm for T rounds.
